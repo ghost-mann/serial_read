@@ -18,7 +18,8 @@ void digital_serial_loop() {
     } else if (infoByte == '1') {
         digitalWrite(digital_ledPin,HIGH);
     }
-
-    Serial.print("You've entered: ");
-    Serial.println(infoByte, DEC);
+    else {
+        Serial.print("Invalid input: ");
+        Serial.println(infoByte, DEC);
+    }
 }
