@@ -1,18 +1,21 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+const int ledPin = 9;
+int incomingByte = 0;
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
+  if (Serial.available() > 0) {
+    incomingByte = Serial.read();
+    if (incomingByte == '1'){digitalWrite(ledPin,HIGH); }
+    else if (incomingByte == '0') {digitalWrite(ledPin,LOW); }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+    Serial.print("I received");
+    Serial.println(incomingByte, DEC);
+  }
+
 }
