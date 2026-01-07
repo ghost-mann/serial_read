@@ -13,4 +13,13 @@ void analog_serial_loop() {
     if (Serial.available() > 0) {
         brightness = Serial.parseInt();
     }
+
+    if (brightness < 0) brightness = 0;
+    if (brightness > 255) brightness = 255;
+
+    analogWrite(analog_ledPin, brightness);
+
+    Serial.print("Brightness level: ");
+    Serial.println(brightness);
+
 }
